@@ -12,13 +12,15 @@ while 1:
         (nouvelle_connexion, TSAP_depuis) = my_socket.accept()
         nouvelle_connexion.sendall("Bienvenue sur le serveur 8085\n".encode('utf-8'))
         print("Nouvelle connexion depuis", TSAP_depuis)
-    while 1:
-        msg = nouvelle_connexion.recv(1024)
-        print(msg.decode('utf-8'))
-        break
-    while 1:
-        msg = input()
-        nouvelle_connexion.sendall(msg.encode('utf-8'))
-        break
+        pid = os.fork()
+    if (pid):
+        while 1:
+            msg = nouvelle_connexion.recv(1024)
+            print(msg.decode('utf-8'))
+            break
+        while 1:
+            msg = input()
+            nouvelle_connexion.sendall(msg.encode('utf-8'))
+            break
 
 my_socket.close()
