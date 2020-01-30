@@ -2,8 +2,10 @@ import os,socket,sys
 adresse_serveur = 'localhost'
 numero_port = 8085
 ma_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+name = os.popen('whoami').read()
 try:
     ma_socket.connect((adresse_serveur, numero_port))
+    # ma_socket.sendall(name)
 except:
     print "probleme de connexion"
     sys.exit(1)

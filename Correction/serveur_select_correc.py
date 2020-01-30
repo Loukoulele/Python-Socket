@@ -15,6 +15,7 @@ while 1:
             (nouvelle_connexion, depuis) = ma_socket.accept()
             print "Nouvelle connexion depuis", depuis
             surveillance.append(nouvelle_connexion)
+            # name = un_evenement.recv(1000)
             nouvelle_connexion.sendall('Bienvenue\n')
             continue
         ligne = un_evenement.recv(1000)
